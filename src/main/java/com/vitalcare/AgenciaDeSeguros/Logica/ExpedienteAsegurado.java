@@ -2,7 +2,7 @@ package com.vitalcare.AgenciaDeSeguros.Logica;
 
 import java.util.Date;
 
-public class ExpedienteAsegurado {
+public class ExpedienteAsegurado extends Asegurado{
 
     private int cedula;
     private int idExpediente;

@@ -5,15 +5,19 @@ public class Empleado extends Persona {
     private boolean tipoEmpleado;  //(Basico/Experto)
     private String observaciones;
     private boolean estado;  //(A/I)
+    private String usuario;
+    private String contrasenia;
 
     public Empleado() {
     }
 
-    public Empleado(boolean tipoEmpleado, String observaciones, boolean estado, int cedula, String nombre) {
+    public Empleado(boolean tipoEmpleado, String observaciones, boolean estado, String usuario, String contrasenia, int cedula, String nombre) {
         super(cedula, nombre);
         this.tipoEmpleado = tipoEmpleado;
         this.observaciones = observaciones;
         this.estado = estado;
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
     }
 
     public boolean isTipoEmpleado() {
@@ -39,5 +43,23 @@ public class Empleado extends Persona {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+    
+    
 
 }

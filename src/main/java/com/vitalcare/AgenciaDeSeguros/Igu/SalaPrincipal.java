@@ -70,12 +70,12 @@ public class SalaPrincipal {
     private Button btnInfo1;
     private Button btnInfo2;
     private Button btnInfo3;
-    TextField txtCedula = new TextField();
-    TextField txtNombre = new TextField();
-    TextField txtEdad = new TextField();
-    TextField txtProvincia = new TextField();
-    TextField txtTelefono = new TextField();
-    TextArea txtDireccion = new TextArea();
+    private TextField txtCedula = new TextField();
+    private TextField txtNombre = new TextField();
+    private TextField txtEdad = new TextField();
+    private TextField txtProvincia = new TextField();
+    private TextField txtTelefono = new TextField();
+    private TextArea txtDireccion = new TextArea();
     private final Pane ingresarDatosPane = new Pane();
     private final Pane infoAsegurado1Pane = new Pane();
     private final Pane infoAsegurado2Pane = new Pane();
