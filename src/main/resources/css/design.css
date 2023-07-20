@@ -1,0 +1,101 @@
+.tab-pane .tab-header-background {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #006d77 50%, #ffffff);
+}
+
+
+.tab-pane .headers-region {
+    -fx-padding: 1px;
+
+}
+
+.tab .tab-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px; /* Adjust the font size as needed */
+    -fx-font-weight: bold; 
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-padding: 1px 6px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-effect: null;
+}
+
+.tab:selected, .tab:pressed, .tab:focused {
+    -fx-background-radius: 0;
+    -fx-padding: 1px 6px;
+    -fx-focus-color: transparent;
+    -fx-border-color: white;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.my-button {
+    -fx-background-radius: 20px;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 4px 16px;
+    -fx-cursor: hand;
+    -fx-effect: null;
+}
+
+.my-button.primary {
+    -fx-background-color: linear-gradient(to bottom, #ff6d6d, #ff2e63);
+}
+
+.my-button.secondary {
+    -fx-background-color: linear-gradient(to bottom, #0b7c9e, #3291ad);
+}
+
+.my-button.primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff2e63, #ff6d6d);
+}
+
+.my-button.secondary:hover {
+    -fx-background-color: linear-gradient(to bottom, #3291ad, #0b7c9e);
+}
+
+.my-button.primary:pressed {
+    -fx-background-color: linear-gradient(to bottom, #d01741, #ff2e63);
+}
+
+.my-button.secondary:pressed {
+    -fx-background-color: linear-gradient(to bottom, #074c63, #196d80);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
