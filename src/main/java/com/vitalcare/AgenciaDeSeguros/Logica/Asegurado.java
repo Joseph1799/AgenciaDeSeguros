@@ -6,16 +6,18 @@ public class Asegurado extends Persona {
     private String provincia;
     private String direccion;
     private int telefono;
+    private ExpedienteAsegurado expediente;
 
     public Asegurado() {
     }
 
-    public Asegurado(int edad, String provincia, String direccion, int telefono, int cedula, String nombre) {
+    public Asegurado(int edad, String provincia, String direccion, int telefono, ExpedienteAsegurado expediente, int cedula, String nombre) {
         super(cedula, nombre);
         this.edad = edad;
         this.provincia = provincia;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.expediente = expediente;
     }
 
     public int getEdad() {
@@ -50,4 +52,12 @@ public class Asegurado extends Persona {
         this.telefono = telefono;
     }
 
+    public ExpedienteAsegurado getExpediente() {
+        return expediente;
+    }
+
+    public void setExpediente(ExpedienteAsegurado expediente) {
+        this.expediente = expediente;
+    }
+    
 }

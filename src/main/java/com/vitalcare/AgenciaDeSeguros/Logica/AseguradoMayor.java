@@ -8,8 +8,8 @@ public class AseguradoMayor extends Asegurado{
     public AseguradoMayor() {
     }
 
-    public AseguradoMayor(String nomPariene, int numPariente, int edad, String provincia, String direccion, int telefono, int cedula, String nombre) {
-        super(edad, provincia, direccion, telefono, cedula, nombre);
+    public AseguradoMayor(String nomPariene, int numPariente, int edad, String provincia, String direccion, int telefono, ExpedienteAsegurado expediente, int cedula, String nombre) {
+        super(edad, provincia, direccion, telefono, expediente, cedula, nombre);
         this.nomPariene = nomPariene;
         this.numPariente = numPariente;
     }

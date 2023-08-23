@@ -3,6 +3,8 @@ package com.vitalcare.AgenciaDeSeguros.Igu;
 import com.vitalcare.AgenciaDeSeguros.Estructuras.Cola;
 import com.vitalcare.AgenciaDeSeguros.Logica.Asegurado;
 import com.vitalcare.AgenciaDeSeguros.Logica.Cajero;
+import com.vitalcare.AgenciaDeSeguros.Logica.ExpedienteAsegurado;
+import java.time.LocalDate;
 import java.util.Random;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -31,9 +33,10 @@ import javafx.scene.text.FontWeight;
 public class SalaPrincipal {
 
     //Instancias
+    private final ExpedienteAsegurado expediente = new ExpedienteAsegurado();
     private final Cajero cajero = new Cajero();
-    private final vitalCareLogin vcLogin = new vitalCareLogin();
-    //private ControlDoctores controlDoc = new ControlDoctores();
+    private vitalCareLogin vcLogin = new vitalCareLogin();
+
     //Variables
     private int numImagen = 1;
     private int cantidadAtendidos = 0;
@@ -47,21 +50,27 @@ public class SalaPrincipal {
     private final Label lblInfoCedulda1 = new Label();
     private final Label lblInfoEdad1 = new Label();
     private final Label lblInfoTelefono1 = new Label();
+    private final Label lblInfoProvincia1 = new Label();
+    private final Label lblInfoDireccion1 = new Label();
     private final Label lblInfoNombre2 = new Label();
     private final Label lblInfoCedulda2 = new Label();
     private final Label lblInfoEdad2 = new Label();
     private final Label lblInfoTelefono2 = new Label();
+    private final Label lblInfoProvincia2 = new Label();
+    private final Label lblInfoDireccion2 = new Label();
     private final Label lblInfoNombre3 = new Label();
     private final Label lblInfoCedulda3 = new Label();
     private final Label lblInfoEdad3 = new Label();
     private final Label lblInfoTelefono3 = new Label();
+    private final Label lblInfoProvincia3 = new Label();
+    private final Label lblInfoDireccion3 = new Label();
     private final Label lblAsegAtendidos = new Label();
     private final ImageView paciente1ImgView = new ImageView();
     private final ImageView paciente2ImgView = new ImageView();
     private final ImageView paciente3ImgView = new ImageView();
     private final ImageView pacEsperandoImgView = new ImageView();
     private SmoothButton btnPedirDatos1;
-    private SmoothButton btnPedirDatos2; 
+    private SmoothButton btnPedirDatos2;
     private SmoothButton btnPedirDatos3;
     private SmoothButton btnGuardarDatos;
     private SmoothButton btnLiberar1;
@@ -80,6 +89,11 @@ public class SalaPrincipal {
     private final Pane infoAsegurado1Pane = new Pane();
     private final Pane infoAsegurado2Pane = new Pane();
     private final Pane infoAsegurado3Pane = new Pane();
+
+    // Este metodo establece la referencia de vcLogin
+    public void setVitalCareLogin(vitalCareLogin vc) {
+        this.vcLogin = vc;
+    }
 
     public void initialize() {
         Pane rootPane = new Pane();
@@ -115,8 +129,6 @@ public class SalaPrincipal {
 
         // Se agrega un Label para mostrar los pacientes en espera
         labelPropiedades(rootPane, lblAseguradosAcumulados, 778.5, 18, "", 28);
-        lblAsegAtendidos.setLayoutX(778.5);
-        lblAsegAtendidos.setLayoutX(18);
         lblAseguradosAcumulados.setMinSize(60, 30);
         lblAseguradosAcumulados.setAlignment(Pos.CENTER);
 
@@ -191,6 +203,10 @@ public class SalaPrincipal {
             cantidadAtendidos++;
             lblAsegAtendidos.setText("");
             lblAsegAtendidos.setText(String.valueOf(cantidadAtendidos));
+            Platform.runLater(() -> {
+                vcLogin.actualizarTabla();
+            });
+
         });
 
         btnLiberar2 = new SmoothButton("Liberar");
@@ -209,6 +225,9 @@ public class SalaPrincipal {
             cantidadAtendidos++;
             lblAsegAtendidos.setText("");
             lblAsegAtendidos.setText(String.valueOf(cantidadAtendidos));
+            Platform.runLater(() -> {
+                vcLogin.actualizarTabla();
+            });
         });
 
         btnLiberar3 = new SmoothButton("Liberar");
@@ -227,6 +246,9 @@ public class SalaPrincipal {
             cantidadAtendidos++;
             lblAsegAtendidos.setText("");
             lblAsegAtendidos.setText(String.valueOf(cantidadAtendidos));
+            Platform.runLater(() -> {
+                vcLogin.actualizarTabla();
+            });
         });
 
         btnInfo1 = new Button(" i ");
@@ -280,7 +302,7 @@ public class SalaPrincipal {
         // MOSTRAR INFORMACION PANE 1
         infoAsegurado1Pane.setPrefWidth(300);
         infoAsegurado1Pane.setPrefHeight(140);
-        infoAsegurado1Pane.setLayoutX(82);
+        infoAsegurado1Pane.setLayoutX(80);
         infoAsegurado1Pane.setLayoutY(55);
         infoAsegurado1Pane.setVisible(false);
         //Se crea y agrega la imagen info1ImgView al Pane1
@@ -293,7 +315,7 @@ public class SalaPrincipal {
         // MOSTRAR INFORMACION PANE 2
         infoAsegurado2Pane.setPrefWidth(300);
         infoAsegurado2Pane.setPrefHeight(140);
-        infoAsegurado2Pane.setLayoutX(312);
+        infoAsegurado2Pane.setLayoutX(315);
         infoAsegurado2Pane.setLayoutY(55);
         infoAsegurado2Pane.setVisible(false);
         //Se crea y agrega la imagen info1ImgView al Pane1
@@ -306,7 +328,7 @@ public class SalaPrincipal {
         // MOSTRAR INFORMACION PANE 3
         infoAsegurado3Pane.setPrefWidth(300);
         infoAsegurado3Pane.setPrefHeight(140);
-        infoAsegurado3Pane.setLayoutX(348);
+        infoAsegurado3Pane.setLayoutX(341);
         infoAsegurado3Pane.setLayoutY(55);
         infoAsegurado3Pane.setVisible(false);
         //Se crea y agrega la imagen info1ImgView al Pane1
@@ -561,11 +583,16 @@ public class SalaPrincipal {
 
         //Si todo esta correcto, se procede a asignarle los datos al asegurado creado con el constructor vacio
         if (datosValidos) {
-            /*La manera en la que se comprueba a cual asegurado de que numero de cajero es al que se le
-             asignaran los atributos, es hace por medio de la variable "numCajero". A esta variable se 
-            le asigna el numero de cajero cuando el JButton "Pedir Datos" es precionado. Esto nos permite
-            controlar el switch que esta a continuacion, esto a su vez declarando dicha variable (numCajero)
-            de manera global*/
+            // Se crea el expediente para el nuevo asegurado el cual se modificará en la clase vitalCareLogin
+            int idExpediente = expediente.getIdExpediente() + 1;
+            LocalDate fechaHoy = LocalDate.now();
+            ExpedienteAsegurado expediente = new ExpedienteAsegurado(
+                    null,
+                    "N/A",
+                    fechaHoy,
+                    'T',
+                    idExpediente);
+            // Se verifica que cajero fue utilizado por medio del switch
             switch (cajero.getNumCajero()) {
                 case 1:
                     //Se optiene al asegurado por medio de un pop
@@ -576,6 +603,7 @@ public class SalaPrincipal {
                     aseguradoVacio.setTelefono(telefono);
                     aseguradoVacio.setCedula(cedula);
                     aseguradoVacio.setNombre(nombre);
+                    aseguradoVacio.setExpediente(expediente);
                     //Devolvemos el asegurado al cajero pero ya con sus atributos asignados
                     cajero.getCajero1().push(aseguradoVacio);
                     //Se muestra el boton liberar para dar paso al siguiente asegurado cuando este sea presionado
@@ -583,10 +611,12 @@ public class SalaPrincipal {
                     btnPedirDatos1.setVisible(false);
                     btnInfo1.setVisible(true);
                     //Se muestran los datos en la seccion de informacion
-                    labelPropiedades(infoAsegurado1Pane, lblInfoNombre1, 88, 39, aseguradoVacio.getNombre(), 12);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoCedulda1, 20, 66, String.valueOf(cedula), 13);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoEdad1, 20, 81, String.valueOf(edad), 13);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoTelefono1, 20, 98, String.valueOf(telefono), 13);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoCedulda1, 76, 68, String.valueOf(cedula), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoNombre1, 81, 113, aseguradoVacio.getNombre(), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoEdad1, 62, 157, String.valueOf(edad), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoProvincia1, 91, 202, String.valueOf(cedula), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoTelefono1, 87, 246, String.valueOf(cedula), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoDireccion1, 90, 290, String.valueOf(telefono), 17);
                     break;
                 case 2:
                     aseguradoVacio = (Asegurado) cajero.getCajero2().pop();
@@ -596,15 +626,18 @@ public class SalaPrincipal {
                     aseguradoVacio.setTelefono(telefono);
                     aseguradoVacio.setCedula(cedula);
                     aseguradoVacio.setNombre(nombre);
+                    aseguradoVacio.setExpediente(expediente);
                     cajero.getCajero2().push(aseguradoVacio);
                     //Se muestra el boton liberar para dar paso al siguiente asegurado
                     btnLiberar2.setVisible(true);
                     btnPedirDatos2.setVisible(false);
                     btnInfo2.setVisible(true);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoNombre2, 95, 39, aseguradoVacio.getNombre(), 12);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoCedulda2, 25, 60, String.valueOf(cedula), 13);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoEdad2, 25, 81, String.valueOf(edad), 13);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoTelefono2, 25, 98, String.valueOf(telefono), 13);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoCedulda2, 76, 68, String.valueOf(cedula), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoNombre2, 81, 113, aseguradoVacio.getNombre(), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoEdad2, 62, 157, String.valueOf(edad), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoProvincia2, 91, 202, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoTelefono2, 87, 246, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoDireccion2, 90, 290, String.valueOf(telefono), 17);
                     break;
                 case 3:
                     aseguradoVacio = (Asegurado) cajero.getCajero3().pop();
@@ -614,15 +647,18 @@ public class SalaPrincipal {
                     aseguradoVacio.setTelefono(telefono);
                     aseguradoVacio.setCedula(cedula);
                     aseguradoVacio.setNombre(nombre);
+                    aseguradoVacio.setExpediente(expediente);
                     cajero.getCajero3().push(aseguradoVacio);
                     //Se muestra el boton liberar para dar paso al siguiente asegurado
                     btnLiberar3.setVisible(true);
                     btnPedirDatos3.setVisible(false);
                     btnInfo3.setVisible(true);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoNombre3, 25, 39, aseguradoVacio.getNombre(), 12);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoCedulda3, 25, 60, String.valueOf(cedula), 13);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoEdad3, 25, 81, String.valueOf(edad), 13);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoTelefono3, 25, 98, String.valueOf(telefono), 13);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoCedulda3, 76, 68, String.valueOf(cedula), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoNombre3, 81, 113, aseguradoVacio.getNombre(), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoEdad3, 62, 157, String.valueOf(edad), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoProvincia3, 91, 202, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoTelefono3, 87, 246, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoDireccion3, 90, 290, String.valueOf(telefono), 17);
                     break;
             }
 

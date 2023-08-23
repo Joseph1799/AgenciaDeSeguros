@@ -2,6 +2,8 @@ package com.vitalcare.AgenciaDeSeguros;
 
 import com.vitalcare.AgenciaDeSeguros.Igu.SalaPrincipal;
 import com.vitalcare.AgenciaDeSeguros.Igu.vitalCareLogin;
+import com.vitalcare.AgenciaDeSeguros.Logica.Cajero;
+import com.vitalcare.AgenciaDeSeguros.Logica.ExpedienteAsegurado;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -12,6 +14,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class AgenciaDeSegurosMain extends Application {
+
+    //Instancias
+    private final ExpedienteAsegurado expediente = new ExpedienteAsegurado();
+    private final Cajero cajero = new Cajero();
+    private final vitalCareLogin vcLogin = new vitalCareLogin();
 
     @Override
     public void start(Stage primaryStage) {
@@ -36,6 +43,7 @@ public class AgenciaDeSegurosMain extends Application {
         // Se crea otro Tab para el pane VitalCarePlataforma
         Tab vitalCareLoginTab = new Tab("Plataforma");
         vitalCareLoginTab.setClosable(false);
+
         // Se crea un Pane para usarse como vcLogin
         vitalCareLogin vcLogin = new vitalCareLogin();
         Pane vcLoginPane = new Pane();
@@ -48,10 +56,12 @@ public class AgenciaDeSegurosMain extends Application {
         // Se agrega el TabPane al Pane rootPane
         rootPane.getChildren().add(tabPane);
 
+        // Establece la referencia de vcLogin en salaPrincipal
+        salaPrincipal.setVitalCareLogin(vcLogin);
+
         // Set the application window icon
         Image windowIcon = new Image(getClass().getResourceAsStream("/imagenes/LogoIcono.png"));
         primaryStage.getIcons().add(windowIcon);
-
 
         //Terminar el programa al cerrar la ventana
         primaryStage.setOnCloseRequest(event -> {

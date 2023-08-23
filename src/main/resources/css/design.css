@@ -72,6 +72,17 @@
     -fx-background-color: linear-gradient(to bottom, #074c63, #196d80);
 }
 
+.titulo-label {
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold; 
+    -fx-border-radius: 15px; 
+    -fx-border: none; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 3, 3);
+}
+
+
+
 
 
 
