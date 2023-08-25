@@ -584,14 +584,11 @@ public class SalaPrincipal {
         //Si todo esta correcto, se procede a asignarle los datos al asegurado creado con el constructor vacio
         if (datosValidos) {
             // Se crea el expediente para el nuevo asegurado el cual se modificará en la clase vitalCareLogin
-            int idExpediente = expediente.getIdExpediente() + 1;
+            expediente.nuevoExpediente();
+            System.out.println(expediente.getIdExpediente());
+            int idExpediente = expediente.getIdExpediente();
             LocalDate fechaHoy = LocalDate.now();
-            ExpedienteAsegurado expediente = new ExpedienteAsegurado(
-                    null,
-                    "N/A",
-                    fechaHoy,
-                    'T',
-                    idExpediente);
+            ExpedienteAsegurado expediente = new ExpedienteAsegurado(null, "", fechaHoy, idExpediente);
             // Se verifica que cajero fue utilizado por medio del switch
             switch (cajero.getNumCajero()) {
                 case 1:
@@ -614,9 +611,9 @@ public class SalaPrincipal {
                     labelPropiedades(infoAsegurado1Pane, lblInfoCedulda1, 76, 68, String.valueOf(cedula), 17);
                     labelPropiedades(infoAsegurado1Pane, lblInfoNombre1, 81, 113, aseguradoVacio.getNombre(), 17);
                     labelPropiedades(infoAsegurado1Pane, lblInfoEdad1, 62, 157, String.valueOf(edad), 17);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoProvincia1, 91, 202, String.valueOf(cedula), 17);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoTelefono1, 87, 246, String.valueOf(cedula), 17);
-                    labelPropiedades(infoAsegurado1Pane, lblInfoDireccion1, 90, 290, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoProvincia1, 91, 202, aseguradoVacio.getProvincia(), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoTelefono1, 87, 246, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado1Pane, lblInfoDireccion1, 90, 290, aseguradoVacio.getDireccion(), 17);
                     break;
                 case 2:
                     aseguradoVacio = (Asegurado) cajero.getCajero2().pop();
@@ -635,9 +632,9 @@ public class SalaPrincipal {
                     labelPropiedades(infoAsegurado2Pane, lblInfoCedulda2, 76, 68, String.valueOf(cedula), 17);
                     labelPropiedades(infoAsegurado2Pane, lblInfoNombre2, 81, 113, aseguradoVacio.getNombre(), 17);
                     labelPropiedades(infoAsegurado2Pane, lblInfoEdad2, 62, 157, String.valueOf(edad), 17);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoProvincia2, 91, 202, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoProvincia2, 91, 202, aseguradoVacio.getProvincia(), 17);
                     labelPropiedades(infoAsegurado2Pane, lblInfoTelefono2, 87, 246, String.valueOf(telefono), 17);
-                    labelPropiedades(infoAsegurado2Pane, lblInfoDireccion2, 90, 290, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado2Pane, lblInfoDireccion2, 90, 290, aseguradoVacio.getDireccion(), 17);
                     break;
                 case 3:
                     aseguradoVacio = (Asegurado) cajero.getCajero3().pop();
@@ -656,9 +653,9 @@ public class SalaPrincipal {
                     labelPropiedades(infoAsegurado3Pane, lblInfoCedulda3, 76, 68, String.valueOf(cedula), 17);
                     labelPropiedades(infoAsegurado3Pane, lblInfoNombre3, 81, 113, aseguradoVacio.getNombre(), 17);
                     labelPropiedades(infoAsegurado3Pane, lblInfoEdad3, 62, 157, String.valueOf(edad), 17);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoProvincia3, 91, 202, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoProvincia3, 91, 202, aseguradoVacio.getProvincia(), 17);
                     labelPropiedades(infoAsegurado3Pane, lblInfoTelefono3, 87, 246, String.valueOf(telefono), 17);
-                    labelPropiedades(infoAsegurado3Pane, lblInfoDireccion3, 90, 290, String.valueOf(telefono), 17);
+                    labelPropiedades(infoAsegurado3Pane, lblInfoDireccion3, 90, 290, aseguradoVacio.getDireccion(), 17);
                     break;
             }
 

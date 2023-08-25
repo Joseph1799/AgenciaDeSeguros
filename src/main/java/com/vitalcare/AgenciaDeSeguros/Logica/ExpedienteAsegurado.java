@@ -5,23 +5,23 @@ import java.time.LocalDate;
 public class ExpedienteAsegurado {
 
     private Seguro seguro;
-    private int idExpediente = 0;
+    private static int idExpediente = 0;
     private String observaciones;
     private LocalDate fecha;
-    private char estado; //(R=revisado, N=anulado, A=activo, T=transito)
 
     public ExpedienteAsegurado() {
     }
 
-    public ExpedienteAsegurado(Seguro seguro, String observaciones, LocalDate fecha, char estado, int idExpediente) {
+    public ExpedienteAsegurado(Seguro seguro, String observaciones, LocalDate fecha, int idExpediente) {
         this.seguro = seguro;
         this.observaciones = observaciones;
         this.fecha = fecha;
-        this.estado = estado;
-        this.idExpediente = this.idExpediente; 
+        this.idExpediente = idExpediente;
     }
 
-    
+    public void nuevoExpediente() {
+        idExpediente++;
+    }
 
     public int getIdExpediente() {
         return idExpediente;
@@ -47,12 +47,12 @@ public class ExpedienteAsegurado {
         this.fecha = fecha;
     }
 
-    public char getEstado() {
-        return estado;
+    public Seguro getSeguro() {
+        return seguro;
     }
 
-    public void setEstado(char estado) {
-        this.estado = estado;
+    public void setSeguro(Seguro seguro) {
+        this.seguro = seguro;
     }
 
 }

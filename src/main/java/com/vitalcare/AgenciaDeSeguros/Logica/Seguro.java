@@ -1,15 +1,14 @@
 package com.vitalcare.AgenciaDeSeguros.Logica;
 
-public class Seguro extends TipoSeguro {
+public class Seguro {
 
-    private boolean estado;  //(A/I)
+    private boolean estado;  //(Activo/Inactivo)
     private int monto;
 
     public Seguro() {
     }
 
-    public Seguro(boolean estado, int monto, int idTipoSeguro, String descripcionSeguro) {
-        super(idTipoSeguro, descripcionSeguro);
+    public Seguro(boolean estado, int monto) {
         this.estado = estado;
         this.monto = monto;
     }

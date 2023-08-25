@@ -2,7 +2,7 @@ package com.vitalcare.AgenciaDeSeguros.Logica;
 
 public class Empleado extends Persona {
 
-    private boolean tipoEmpleado;  //(Basico/Experto)
+    private String tipoEmpleado;  //(Basico/Experto)
     private String observaciones;
     private boolean estado;  //(A/I)
     private String usuario;
@@ -11,7 +11,7 @@ public class Empleado extends Persona {
     public Empleado() {
     }
 
-    public Empleado(boolean tipoEmpleado, String observaciones, boolean estado, String usuario, String contrasenia, int cedula, String nombre) {
+    public Empleado(String tipoEmpleado, String observaciones, boolean estado, String usuario, String contrasenia, int cedula, String nombre) {
         super(cedula, nombre);
         this.tipoEmpleado = tipoEmpleado;
         this.observaciones = observaciones;
@@ -20,11 +20,11 @@ public class Empleado extends Persona {
         this.contrasenia = contrasenia;
     }
 
-    public boolean isTipoEmpleado() {
+    public String isTipoEmpleado() {
         return tipoEmpleado;
     }
 
-    public void setTipoEmpleado(boolean tipoEmpleado) {
+    public void setTipoEmpleado(String tipoEmpleado) {
         this.tipoEmpleado = tipoEmpleado;
     }
 
