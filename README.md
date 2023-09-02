@@ -40,7 +40,7 @@ The insurance management system includes the following features:
    - Customers over 60 years old are managed separately using a stack data structure.
    - A separate list is maintained for customers under 60 years old.
 
-7. **Additional Functionalities (To be Implemented)**
+7. **Additional Functionalities**
    - Assigning a relative and contact number to each customer over 60 years old.
    - Modifying customer expedient details at any time.
    - Doctor management (addition, modification, and deactivation).
@@ -70,4 +70,4 @@ We would like to express our gratitude to our professor, Ing. Mauricio Rivera Vi
 
 ## Contact
 
-For any inquiries or feedback, please contact the project team at [Joseph1799us@gmail.com].
+For any inquiries or feedback, please contact the project team at Joseph1799us@gmail.com.
